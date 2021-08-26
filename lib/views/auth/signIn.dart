@@ -61,7 +61,7 @@ class _SignInState extends State<SignIn> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "The ultimate purpose of\nsaving is to acquire assets.",
+                    "The ultimate purpose of\nsaving is to acquire assets for passive income.",
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ),

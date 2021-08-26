@@ -37,6 +37,8 @@ dependencies:
   hive_flutter: ^1.1.0
   local_auth: ^1.1.6
   pin_code_fields: ^7.3.0
+  timer_count_down: ^2.2.0
+  fancy_drawer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

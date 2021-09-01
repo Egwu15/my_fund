@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:get/route_manager.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -97,20 +99,19 @@ class Auth {
     }
   }
 
-  otp({required String password, required String otp}) async {
+  otp({required String otp}) async {
     var url = Uri.parse("$baseUrl/otp");
     String token = await hiveStorage.getToken();
     try {
       var response = await http.post(url, body: {
-        // 'code': otp,
-        // 'password': password
+        'otp': otp,
       }, headers: {
         "Accept": "application/json",
         'Authorization': 'Bearer $token',
       });
 
       if (response.statusCode == 201) {
-        Get.off(() => SignIn());
+        Get.off(() => HomePage());
       } else {
         Get.rawSnackbar(message: "An unknown error occured!");
       }
@@ -142,6 +143,8 @@ class Auth {
       print(e);
     }
   }
+
+  
 
   logout() {
     hiveStorage.clearToken();

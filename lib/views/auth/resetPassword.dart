@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_fund/controller/auth.dart';
+import 'package:my_fund/views/uiComponents/colors.dart';
 import 'package:my_fund/views/uiComponents/customButton.dart';
 import 'package:my_fund/views/uiComponents/customTextField.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -62,7 +63,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         backgroundColor: Colors.white,
                         pinTheme: PinTheme(
                             selectedColor: Colors.purple,
-                            activeColor: Colors.deepPurple,
+                            activeColor: deepPurple,
                             fieldOuterPadding: EdgeInsets.all(3.0),
                             shape: PinCodeFieldShape.underline,
                             fieldWidth: 25.0,
@@ -71,7 +72,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                             activeFillColor: Colors.red),
                       ),
                       SizedBox(height: 20.0),
-                      custormTextField(
+                      custormTextFieldOutlined(
                           controller: passwordController,
                           label: "New password",
                           obscureText: true,

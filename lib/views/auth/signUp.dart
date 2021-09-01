@@ -56,23 +56,23 @@ class _SignUpState extends State<SignUp> {
                 Form(
                     child: Column(
                   children: [
-                    custormTextField(
+                    custormTextFieldOutlined(
                         controller: emailController,
                         label: "Email Address",
                         keybord: TextInputType.emailAddress),
                     SizedBox(height: 15.0),
-                    custormTextField(
+                    custormTextFieldOutlined(
                         controller: phoneNumberController,
                         label: "Phone Number",
                         keybord: TextInputType.phone),
                     SizedBox(height: 15.0),
-                    custormTextField(
+                    custormTextFieldOutlined(
                         controller: passwordController,
                         label: "Password",
                         obscureText: true,
                         keybord: TextInputType.visiblePassword),
                     SizedBox(height: 15.0),
-                    custormTextField(
+                    custormTextFieldOutlined(
                         controller: couponController,
                         label: "Referrer Phone or Promo Code",
                         keybord: TextInputType.phone),

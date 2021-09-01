@@ -51,7 +51,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 Form(
                   child: Column(
                     children: [
-                      custormTextField(
+                      custormTextFieldOutlined(
                           controller: emailController,
                           label: "Email Address",
                           keybord: TextInputType.emailAddress),

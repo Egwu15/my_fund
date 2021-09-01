@@ -71,12 +71,12 @@ class _SignInState extends State<SignIn> {
                 Form(
                   child: Column(
                     children: [
-                      custormTextField(
+                      custormTextFieldOutlined(
                           controller: emailController,
                           label: "Email Address",
                           keybord: TextInputType.emailAddress),
                       SizedBox(height: 15.0),
-                      custormTextField(
+                      custormTextFieldOutlined(
                           controller: passwordController,
                           label: "Password",
                           obscureText: true,

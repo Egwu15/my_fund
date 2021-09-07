@@ -29,7 +29,7 @@ class UserData extends GetxController {
 
     //wallet
     var bal = await hiveStorage.getwalletBallance();
-    walletBalance.value = bal.toString();
+    walletBalance.value = bal.toString() ;
 
     //fullname
     var name = await hiveStorage.getFullName();
@@ -59,12 +59,14 @@ class UserData extends GetxController {
 
       if (response.statusCode == 201) {
         // Get.off(() => HomePage());
+        await fetchWalletBalance();
         print('Response body: ${jsonDecode(response.body)}');
 
         hiveStorage.saveEmail(jsonDecode(response.body)['data']['email']);
         hiveStorage.saveFullName(jsonDecode(response.body)['data']['fullName']);
         hiveStorage.saveBank(jsonDecode(response.body)['data']['bank']);
         hiveStorage.saveAccount(jsonDecode(response.body)['data']['account']);
+        
 
         bindUserDetails();
         return User.fromJson(jsonDecode(response.body));

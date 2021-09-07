@@ -6,6 +6,7 @@ import 'package:my_fund/controller/user.dart';
 import 'package:my_fund/views/sideBarPages.dart/underProfile/accountSettings.dart';
 import 'package:my_fund/views/sideBarPages.dart/underProfile/bankSettings.dart';
 import 'package:my_fund/views/sideBarPages.dart/underProfile/kycForm.dart';
+import 'package:my_fund/views/sideBarPages.dart/underProfile/loan.dart';
 import 'package:my_fund/views/uiComponents/colors.dart';
 import 'package:my_fund/views/uiComponents/profileButtonTile.dart';
 import 'package:get/instance_manager.dart';
@@ -78,9 +79,13 @@ class ProfilePage extends StatelessWidget {
                     action: () => Get.to(() => BankSettings())),
                 profileButtonTile(text: "Card Settings", action: () {}),
                 profileButtonTile(text: "Chat Settings", action: () {}),
-                profileButtonTile(text: "Loan Transaction", action: () {}),
+                profileButtonTile(
+                    text: "Loan Transaction",
+                    action: () => Get.to(() => Loan())),
                 profileButtonTile(text: "FAQ", action: () {}),
-                profileButtonTile(text: "KYC Form here", action: ()=>Get.to(()=>KycForm())),
+                profileButtonTile(
+                    text: "KYC Form here",
+                    action: () => Get.to(() => KycForm())),
                 profileButtonTile(text: "Help", action: () {}),
                 profileButtonTile(
                     text: "Logout",

@@ -41,6 +41,7 @@ custormTextField(
     required TextEditingController controller,
     TextInputType keybord = TextInputType.text,
     bool obscureText = false,
+
     bool enabled = true}) {
   return Column(
     children: [
@@ -60,6 +61,7 @@ custormTextField(
         child: TextFormField(
           keyboardType: keybord,
           controller: controller,
+          // validator: ,
           cursorColor: Colors.deepPurple,
           obscureText: obscureText,
           enabled: enabled,

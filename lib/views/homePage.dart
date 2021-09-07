@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_fund/controller/auth.dart';
+import 'package:my_fund/controller/kyc.dart';
 import 'package:my_fund/views/bottomNavPages/myFund.dart';
 import 'package:my_fund/views/uiComponents/badge.dart';
 import 'package:my_fund/views/uiComponents/bottonNavItems.dart';
@@ -56,7 +57,7 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return custormAppDrawer(
       controller: _controller,
-      scaffold: Scaffold(
+      scaffold: Scaffold(floatingActionButton: FloatingActionButton(onPressed: ()=>Kyc().viewKyc(),),
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.white,

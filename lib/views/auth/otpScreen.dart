@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_fund/controller/auth.dart';
-import 'package:my_fund/controller/storage.dart';
+import 'package:my_fund/controller/profileStorage.dart';
 import 'package:my_fund/views/uiComponents/customButton.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:timer_count_down/timer_controller.dart';

@@ -1,18 +1,33 @@
+import 'dart:convert';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_uploader/flutter_uploader.dart';
 import 'package:get/route_manager.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:my_fund/controller/storage.dart';
+import 'package:my_fund/controller/profileStorage.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:my_fund/views/homePage.dart';
 
 class LoanController {
   final uploader = FlutterUploader();
   late String _path;
   final picker = ImagePicker();
   String baseUrl = dotenv.env['BASE_URL'] ?? "domain";
+  uploadNotification(
+      {required String body, required int progress, required String title}) {
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 12,
+            channelKey: 'basic_channel',
+            title: title,
+            body: body,
+            autoCancel: true,
+            progress: progress,
+            notificationLayout: NotificationLayout.ProgressBar));
+  }
 
   Future getDocFromCamera() async {
     final pickedFile = await picker.pickImage(source: ImageSource.camera);
@@ -49,7 +64,7 @@ class LoanController {
   }) async {
     var userToken = await HiveStorage().getToken();
 
-    Get.back();
+    Get.to(()=>HomePage());
     Get.rawSnackbar(message: "uploading ...");
 
     var formData = FormData.fromMap({
@@ -71,15 +86,9 @@ class LoanController {
         onSendProgress: (int sent, int total) {
       int totalPercentage = ((sent / total) * 100).toInt();
 
-      AwesomeNotifications().createNotification(
-          content: NotificationContent(
-              id: 10,
-              channelKey: 'loanChannel',
-              title: 'uploading document',
-              body: 'loan',
-              autoCancel: true,
-              progress: totalPercentage,
-              notificationLayout: NotificationLayout.ProgressBar));
+      uploadNotification(
+          body: "Loan", progress: totalPercentage, title: "uploading document");
+
       print(totalPercentage);
     },
         options: Options(validateStatus: (status) => true, headers: {
@@ -89,10 +98,21 @@ class LoanController {
 
     print(response.data.toString());
     print(response.statusCode);
-    if (response.statusCode == 201) {
-      Get.rawSnackbar(message: "Loan form submitted successfully");
+    if (response.statusCode == 200) {
+      Get.rawSnackbar(message: response.data['data']);
+      uploadNotification(
+          body: response.data['data'],
+          progress: 100,
+          title: 'uploading complete');
     } else {
-      Get.rawSnackbar(message: "Error uploading loan form");
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+        id: 12,
+        channelKey: 'basic_channel',
+        title: 'upload faied',
+        body: "Please try again",
+        autoCancel: true,
+      ));
     }
   }
 

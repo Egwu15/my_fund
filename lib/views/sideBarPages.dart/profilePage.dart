@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_fund/controller/auth.dart';
 import 'package:my_fund/controller/user.dart';
 import 'package:my_fund/views/sideBarPages.dart/underProfile/accountSettings.dart';
 import 'package:my_fund/views/sideBarPages.dart/underProfile/bankSettings.dart';
+import 'package:my_fund/views/sideBarPages.dart/underProfile/cardSetting.dart';
+import 'package:my_fund/views/sideBarPages.dart/underProfile/contactUs.dart';
 import 'package:my_fund/views/sideBarPages.dart/underProfile/kycForm.dart';
 import 'package:my_fund/views/sideBarPages.dart/underProfile/loan.dart';
 import 'package:my_fund/views/uiComponents/colors.dart';
 import 'package:my_fund/views/uiComponents/profileButtonTile.dart';
 import 'package:get/instance_manager.dart';
+import 'package:my_fund/views/uiComponents/profilePicUploadDialog.dart';
+import 'package:my_fund/views/uiComponents/uploadDialog.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -38,7 +43,15 @@ class ProfilePage extends StatelessWidget {
                       CircleAvatar(
                         backgroundColor: Colors.white,
                         radius: 50.0,
-                        child: Image.asset('assets/images/logo.png'),
+                        child: Obx(
+                          () => ClipOval(
+                            child: Image.network(
+                              userData.picture.string,
+                              width: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                       ),
                       SizedBox(height: 5.0),
                       Obx(
@@ -77,7 +90,9 @@ class ProfilePage extends StatelessWidget {
                       color: Colors.blue,
                     ),
                     action: () => Get.to(() => BankSettings())),
-                profileButtonTile(text: "Card Settings", action: () {}),
+                profileButtonTile(
+                    text: "Card Settings",
+                    action: () => Get.to(() => CardSettings())),
                 profileButtonTile(text: "Chat Settings", action: () {}),
                 profileButtonTile(
                     text: "Loan Transaction",
@@ -86,14 +101,15 @@ class ProfilePage extends StatelessWidget {
                 profileButtonTile(
                     text: "KYC Form here",
                     action: () => Get.to(() => KycForm())),
-                profileButtonTile(text: "Help", action: () {}),
+                profileButtonTile(
+                    text: "Help", action: () => Get.to(() => ContactUs())),
                 profileButtonTile(
                     text: "Logout",
                     icon: Icon(
                       Icons.logout_outlined,
                       color: Colors.red,
                     ),
-                    action: () {}),
+                    action: () => Auth().logout()),
               ],
             ),
           ),

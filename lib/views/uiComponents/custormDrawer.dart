@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_fund/controller/auth.dart';
 import 'package:my_fund/views/sideBarPages.dart/profilePage.dart';
+import 'package:my_fund/views/sideBarPages.dart/underProfile/loan.dart';
 
 Widget custormAppDrawer({
   required FancyDrawerController controller,
@@ -39,7 +40,7 @@ Widget custormAppDrawer({
               fancyDrawerTIle(
                   text: "Loan",
                   icon: Icons.description_outlined,
-                  action: () {}),
+                  action: () => Get.to(() => Loan())),
               line(),
               fancyDrawerTIle(
                   text: "Home", icon: Icons.security_outlined, action: () {}),
@@ -87,4 +88,3 @@ Widget line() {
     ),
   );
 }
-

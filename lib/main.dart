@@ -21,6 +21,7 @@ Future main() async {
         )
     ]
 );
+  
   await Hive.initFlutter();
   await dotenv.load(fileName: ".env");
   runApp(MyApp());

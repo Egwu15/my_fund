@@ -3,6 +3,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/instance_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_fund/controller/user.dart';
+import 'package:my_fund/views/sideBarPages.dart/underProfile/updateBank.dart';
 import 'package:my_fund/views/uiComponents/colors.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:my_fund/views/uiComponents/customButton.dart';
@@ -94,20 +95,9 @@ class BankSettings extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      custormButton(text: "UPDATE BANK", action: () {}),
+                      custormButton(text: "UPDATE BANK", action: ()=>Get.to(()=>UpdateBank())),
                       SizedBox(height: 15.0),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 50.0,
-                        child: OutlinedButton(
-                            style: OutlinedButton.styleFrom(
-                                side:
-                                    BorderSide(color: Colors.blue, width: 1.0),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0))),
-                            onPressed: ()=>Get.back(),
-                            child: Text("CLOSE", style: GoogleFonts.inter(fontWeight: FontWeight.w700),)),
-                      )
+                      CustormOutlinedButton()
                     ],
                   ),
                 ))

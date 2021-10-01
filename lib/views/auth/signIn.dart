@@ -4,7 +4,7 @@ import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_fund/controller/auth.dart';
 import 'package:my_fund/controller/localAuth.dart';
-import 'package:my_fund/controller/storage.dart';
+import 'package:my_fund/controller/profileStorage.dart';
 import 'package:my_fund/views/auth/forgotPassword.dart';
 import 'package:my_fund/views/auth/signUp.dart';
 import 'package:my_fund/views/uiComponents/customButton.dart';

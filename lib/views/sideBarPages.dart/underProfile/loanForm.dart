@@ -22,7 +22,7 @@ class _LoanFormState extends State<LoanForm> {
   TextEditingController _ammount = TextEditingController();
   TextEditingController _reason = TextEditingController();
 
-  TextEditingController repayAmmoun = TextEditingController();
+  TextEditingController _repayAmmount = TextEditingController();
   TextEditingController _intrestRate = TextEditingController();
   String _duration = "3 months";
 
@@ -66,7 +66,8 @@ class _LoanFormState extends State<LoanForm> {
               ),
               custormTextField(
                   controller: _gurantorPhoneNumber2,
-                  label: "Guarator Phone number"),
+                  label: "Guarator Phone number",
+                  keybord: TextInputType.number),
               SizedBox(
                 height: 15.0,
               ),
@@ -106,7 +107,7 @@ class _LoanFormState extends State<LoanForm> {
                 height: 15.0,
               ),
               custormTextField(
-                  controller: _ammount,
+                  controller: _repayAmmount,
                   label: "Repay Amount Monthly",
                   keybord: TextInputType.number),
               SizedBox(
@@ -119,7 +120,20 @@ class _LoanFormState extends State<LoanForm> {
               SizedBox(
                 height: 35.0,
               ),
-              // custormButton(text: "SUBMIT", action: () => LoanController().uploadDoc(path: path, gt1Name: gt1Name, gt1Phone: gt1Phone, gt2Name: gt2Name, gt2Phone: gt2Phone, idNumber: idNumber, ammount: ammount, reason: reason, duration: duration, montlyrepay: montlyrepay, intrest: intrest)),
+              custormButton(
+                  text: "SUBMIT",
+                  action: () => LoanController().uploadDoc(
+                      path: imageUploadPath,
+                      gt1Name: _gurantorName.text,
+                      gt1Phone: _gurantorPhoneNumber.text,
+                      gt2Name: _gurantorName2.text,
+                      gt2Phone: _gurantorPhoneNumber2.text,
+                      idNumber: _gurantorIdNumber.text,
+                      ammount: _ammount.text,
+                      reason: _reason.text,
+                      duration: _duration,
+                      montlyrepay: _repayAmmount.text,
+                      intrest: _intrestRate.text)),
               SizedBox(
                 height: 15.0,
               ),

@@ -8,6 +8,7 @@ class HiveStorage {
   static const walletBallance = "WALLET_BALLANCE";
   static const bank = "BANK";
   static const account = "ACCOUNT";
+  static const profilePicture = "PROFILE_PICTURE";
 
   //TOKEN
   saveToken(token) async {
@@ -94,5 +95,18 @@ class HiveStorage {
     var box = await Hive.openBox(store);
 
     return box.get(account);
+  }
+
+  //PROFILE PICTURE
+  saveProfilePicture(profilePic) async {
+    var box = await Hive.openBox(store);
+
+    box.put(profilePicture, profilePic);
+  }
+
+  getProfilePicture() async {
+    var box = await Hive.openBox(store);
+
+    return box.get(profilePicture);
   }
 }

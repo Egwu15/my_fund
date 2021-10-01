@@ -44,6 +44,8 @@ dependencies:
   dio: ^4.0.0
   awesome_notifications: ^0.0.6+10
   form_field_validator: ^1.1.0
+  carousel_slider: ^4.0.0
+  awesome_card: ^1.1.5
 
 dev_dependencies:
   flutter_test:

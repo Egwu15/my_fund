@@ -4,6 +4,7 @@ import 'package:my_fund/controller/kyc.dart';
 import 'package:my_fund/views/uiComponents/customButton.dart';
 import 'package:my_fund/views/uiComponents/customTextField.dart';
 import 'package:my_fund/views/uiComponents/custormDropDownButton.dart';
+import 'package:my_fund/views/uiComponents/uploadButton.dart';
 import 'package:my_fund/views/uiComponents/uploadDialog.dart';
 
 class KycForm extends StatefulWidget {
@@ -162,35 +163,8 @@ class _KycFormState extends State<KycForm> {
               SizedBox(
                 height: 15.0,
               ),
-              Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(
-                        "Upload ID Card",
-                        style: GoogleFonts.dmSans(
-                            fontSize: 16.0, fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () => uploadImage(),
-                    child: SizedBox(
-                      height: 50.0,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.grey[300]),
-                        padding: EdgeInsets.all(12.0),
-                        child: Row(
-                          children: [],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              UploadButton(
+                action: () => uploadImage(),
               ),
               SizedBox(height: 15.0),
               custormButton(

@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:get/route_manager.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:my_fund/controller/storage.dart';
+import 'package:my_fund/controller/accountStorage.dart';
+import 'package:my_fund/controller/profileStorage.dart';
 import 'package:my_fund/models/registrationModel.dart';
 import 'package:my_fund/views/auth/forgotPassword.dart';
 import 'package:my_fund/views/auth/otpScreen.dart';
@@ -148,6 +149,7 @@ class Auth {
 
   logout() {
     hiveStorage.clearToken();
+    AccountHiveStorage().clearAccStorage();
     Get.offAll(() => OnbordingScreen());
   }
 }

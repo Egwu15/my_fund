@@ -16,6 +16,7 @@ class UserData extends GetxController {
   var bank = "Your bank".obs;
   var account = "xxxx xxxx xxxx xxxx".obs;
   var picture = "https://myfund.tbmholdingltd.com/images/dummy.jpeg".obs;
+  var phoneNumber = '080XXXXXXXX'.obs;
   @override
   void onInit() {
     super.onInit();
@@ -43,7 +44,7 @@ class UserData extends GetxController {
     account.value = acc ?? 'xxxx xxxx xxxx xxxx';
 
     String pic = await hiveStorage.getProfilePicture();
-    picture.value = pic ;
+    picture.value = pic;
     print("PP: ${picture.value}");
   }
 
@@ -66,6 +67,7 @@ class UserData extends GetxController {
 
         hiveStorage.saveEmail(jsonDecode(response.body)['data']['email']);
         hiveStorage.saveFullName(jsonDecode(response.body)['data']['fullName']);
+        hiveStorage.savePhoneNumber(jsonDecode(response.body)['data']['phone']);
         hiveStorage.saveBank(jsonDecode(response.body)['data']['bank']);
         hiveStorage.saveAccount(jsonDecode(response.body)['data']['account']);
         hiveStorage

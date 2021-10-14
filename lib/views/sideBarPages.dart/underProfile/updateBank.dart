@@ -91,15 +91,16 @@ class _UpdateBankState extends State<UpdateBank> {
                   controller: amountTextController,
                   keybord: TextInputType.number,
                   onChanged: (value) {
-                    if (value.length == 10) {
-                      setState(() {
-                        accountDetails = "loading account...";
-                      });
-                    } else {
-                      setState(() {
-                        accountDetails = '';
-                      });
-                    }
+                    // if (value.length == 10) {
+                    //   setState(() {
+                    //     accountDetails = "loading account...";
+                    //   });
+                    // } else {
+                    //   setState(() {
+                    //     accountDetails = '';
+                    //   }
+                    // );
+                    // }
                   },
                   label: "Account Number"),
               Padding(
@@ -119,12 +120,12 @@ class _UpdateBankState extends State<UpdateBank> {
                   : custormButton(
                       text: "UPDATE BANK",
                       action: () {
-                        if (
-                            amountTextController.text.length == 10) {
+                        if (amountTextController.text.length == 10) {
                           setState(() {
                             _isLoading = true;
                           });
-                          bankController.sendBankRequest(
+                          bankController
+                              .sendBankRequest(
                                   bank: selectedBank,
                                   account: amountTextController.text)
                               .then((_) {

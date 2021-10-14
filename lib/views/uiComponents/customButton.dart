@@ -17,8 +17,9 @@ Widget custormButton({required String text, required Function action}) {
 }
 
 class CustormOutlinedButton extends StatelessWidget {
-  const CustormOutlinedButton({Key? key}) : super(key: key);
-
+  const CustormOutlinedButton({Key? key, this.text = "CLOSE"})
+      : super(key: key);
+  final String text;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -31,7 +32,7 @@ class CustormOutlinedButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15.0))),
           onPressed: () => Get.back(),
           child: Text(
-            "CLOSE",
+            text,
             style: GoogleFonts.inter(fontWeight: FontWeight.w700),
           )),
     );

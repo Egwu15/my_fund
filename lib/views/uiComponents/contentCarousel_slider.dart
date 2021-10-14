@@ -2,8 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/instance_manager.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_fund/controller/accountsController.dart';
+import 'package:my_fund/views/bottomNavPages/underMyfundPage/quickInvestment.dart';
 
 import 'colors.dart';
 
@@ -19,22 +21,8 @@ class ContentCarousel extends StatefulWidget {
 class _ContentCarouselState extends State<ContentCarousel> {
   int _current = 0;
 
-  static final List<Widget> imgList = [
-    CardSliderCard(
-      text: "Total Savings  ",
-    ),
-    CardSliderCard(
-      text: "Total Investment  ",
-    ),
-    CardSliderCard(
-      text: "Total Fractional Ownership  ",
-    ),
-    CardSliderCard(
-      text: "Total Wallet   ",
-    ),
-    CardSliderCard(
-      text: "Total Points  ",
-    ),
+  static final List imgList = [
+   1,2,3,4,5
   ];
 
   final List<Widget> imageSliders = imgList
@@ -86,55 +74,52 @@ class _ContentCarouselState extends State<ContentCarousel> {
     final AccountController accountController = Get.put(AccountController());
     return Column(
       children: [
-        CarouselSlider(
-          items: [
-            CardSliderCard(
-                text:
-                    "Total Savings",
-                amount: accountController.totalInvestment.string),
-            CardSliderCard(
-              text: "Total Investment  ",
-            ),
-            CardSliderCard(
-              text: "Total Fractional Ownership  ",
-            ),
-            CardSliderCard(
-              text: "Total Wallet   ",
-            ),
-            CardSliderCard(
-              text: "Total Points  ",
-            ),
-          ],
-          carouselController: _controller,
-          options: CarouselOptions(
-              autoPlay: true,
-              enlargeCenterPage: true,
-              aspectRatio: 2.0,
-              viewportFraction: 1,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _current = index;
-                });
-              }),
+        Obx(()=> CarouselSlider(
+            items: [
+              CardSliderCard(
+                text: "Total Savings",
+                amount: accountController.totalInvestment.string,
+                quickSave: () {},
+              ),
+              CardSliderCard(
+                text: "Total Investment  ",
+                quickSave: ()=>Get.to(()=>QuickInvestment()),
+                quickSaveText: "Quick Invest",
+              ),
+              CardSliderCard(
+                text: "Total Fractional Ownership  ",
+                quickSave: () {},
+              ),
+              CardSliderCard(
+                text: "Total Wallet   ",
+                quickSave: () {},
+              ),
+              CardSliderCard(
+                text: "Total Points  ",
+                quickSave: () {},
+              ),
+            ],
+            carouselController: _controller,
+            options: CarouselOptions(
+                autoPlay: true,
+                enlargeCenterPage: true,
+                aspectRatio: 2.0,
+                viewportFraction: 1,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _current = index;
+                  });
+                }),
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CardSliderCard(
-                text: "Total Savings",
-                amount: accountController.totalInvestment.string),
-            CardSliderCard(
-              text: "Totaldd Investment  ",
-            ),
-            CardSliderCard(
-              text: "Total Fractional Ownership  ",
-            ),
-            CardSliderCard(
-              text: "Totaddddl Wallet   ",
-            ),
-            CardSliderCard(
-              text: "Totaddl Points  ",
-            ),
+            Container(),
+            Container(),
+            Container(),
+            Container(),
+            Container(),
           ].asMap().entries.map((entry) {
             return GestureDetector(
               onTap: () => _controller.animateToPage(entry.key),
@@ -158,10 +143,18 @@ class _ContentCarouselState extends State<ContentCarousel> {
 }
 
 class CardSliderCard extends StatelessWidget {
-  const CardSliderCard({Key? key, required this.text, this.amount = "0"})
+  const CardSliderCard(
+      {Key? key,
+      required this.text,
+      this.amount = "0",
+      required this.quickSave,
+     this.quickSaveText = "Quick save"})
       : super(key: key);
   final String text;
   final String amount;
+  final String quickSaveText;
+  final Function quickSave;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -215,9 +208,9 @@ class CardSliderCard extends StatelessWidget {
                         width: 8.0,
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () => quickSave(),
                         child: Text(
-                          "Quick Save",
+                          quickSaveText,
                           style: TextStyle(color: Colors.white, fontSize: 10.0),
                         ),
                         style: TextButton.styleFrom(

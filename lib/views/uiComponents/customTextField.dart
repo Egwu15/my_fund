@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 custormTextFieldOutlined(
     {String label = "label",
     initialValue,
-    required TextEditingController controller,
+    controller,
     TextInputType keybord = TextInputType.text,
     bool obscureText = false,
     bool enabled = true}) {

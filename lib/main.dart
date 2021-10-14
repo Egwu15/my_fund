@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -6,29 +8,35 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_fund/views/onbording.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
 
 Future main() async {
   AwesomeNotifications().initialize(
-    // set the icon to null if you want to use the default app icon
-    null,
-    [
+      // set the icon to null if you want to use the default app icon
+      null,
+      [
         NotificationChannel(
             channelKey: 'basic_channel',
             channelName: 'Basic notifications',
             channelDescription: 'Notification channel for basic tests',
             defaultColor: Color(0xFF9D50DD),
-            ledColor: Colors.white
-        )
-    ]
-);
-  
+            ledColor: Colors.white)
+      ]);
+
   await Hive.initFlutter();
   await dotenv.load(fileName: ".env");
+  HttpOverrides.global = new MyHttpOverrides();
   runApp(MyApp());
 }
-
-class MyApp extends StatelessWidget {
   
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

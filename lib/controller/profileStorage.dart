@@ -9,6 +9,7 @@ class HiveStorage {
   static const bank = "BANK";
   static const account = "ACCOUNT";
   static const profilePicture = "PROFILE_PICTURE";
+  static const phoneNumber = "PHONE_NUMBER";
 
   //TOKEN
   saveToken(token) async {
@@ -108,5 +109,18 @@ class HiveStorage {
     var box = await Hive.openBox(store);
 
     return box.get(profilePicture);
+  }
+
+  //PHONE NUMBER
+  savePhoneNumber(phoneNum) async {
+    var box = await Hive.openBox(store);
+
+    box.put(phoneNumber, phoneNum);
+  }
+
+  getPhoneNumber() async {
+    var box = await Hive.openBox(store);
+
+    return box.get(phoneNumber).toString();
   }
 }

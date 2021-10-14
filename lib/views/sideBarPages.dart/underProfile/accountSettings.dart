@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/instance_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_fund/controller/profileStorage.dart';
 import 'package:my_fund/controller/user.dart';
 import 'package:my_fund/views/uiComponents/customButton.dart';
 import 'package:my_fund/views/uiComponents/customTextField.dart';
@@ -16,6 +17,22 @@ class AccountSettings extends StatefulWidget {
 
 class _AccountSettingsState extends State<AccountSettings> {
   TextEditingController _fullNameController = TextEditingController();
+  TextEditingController _phoneNumberController = TextEditingController();
+  HiveStorage hiveStorage = HiveStorage();
+  @override
+  void initState() {
+    setFieldValues().then((_) {
+      Future.delayed(Duration(seconds: 1), () {
+        setState(() {});
+      });
+    });
+    super.initState();
+  }
+
+  setFieldValues() async {
+    _fullNameController.text = await HiveStorage().getFullName() ?? '';
+    _phoneNumberController.text = await HiveStorage().getPhoneNumber();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +53,7 @@ class _AccountSettingsState extends State<AccountSettings> {
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
         child: SingleChildScrollView(
           child: Obx(
-            ()=> Column(
+            () => Column(
               children: [
                 Row(children: [
                   GestureDetector(
@@ -69,13 +86,12 @@ class _AccountSettingsState extends State<AccountSettings> {
                     controller: _fullNameController,
                     label: "Full Name",
                     enabled: false,
-                    initialValue: userData.userFullName.string,
                     keybord: TextInputType.name),
                 SizedBox(
                   height: 20.0,
                 ),
                 custormTextFieldOutlined(
-                    controller: _fullNameController,
+                    enabled: false,
                     label: "Email Address",
                     initialValue: userData.userEmail.string,
                     keybord: TextInputType.emailAddress),
@@ -90,7 +106,7 @@ class _AccountSettingsState extends State<AccountSettings> {
                   height: 20.0,
                 ),
                 custormTextFieldOutlined(
-                    controller: _fullNameController,
+                    controller: _phoneNumberController,
                     label: "PhoneNumber",
                     // initialValue: userData.,
                     keybord: TextInputType.phone),

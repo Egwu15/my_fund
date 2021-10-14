@@ -2,6 +2,8 @@ import 'package:fancy_drawer/fancy_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:my_fund/controller/kyc.dart';
 import 'package:my_fund/views/bottomNavPages/myFund.dart';
+import 'package:my_fund/views/bottomNavPages/investment.dart';
+import 'package:my_fund/views/bottomNavPages/saving.dart';
 import 'package:my_fund/views/uiComponents/badge.dart';
 import 'package:my_fund/views/uiComponents/bottonNavItems.dart';
 import 'package:my_fund/views/uiComponents/custormDrawer.dart';
@@ -19,8 +21,8 @@ class _HomePageState extends State<HomePage>
   int _currentIndex = 0;
   final List<Widget> _children = [
     Myfund(),
-    PlaceholderWidget(Colors.deepOrange),
-    PlaceholderWidget(Colors.green),
+    Saving(),
+    Investment(),
     PlaceholderWidget(Colors.pink),
     PlaceholderWidget(Colors.deepOrange),
     PlaceholderWidget(Colors.green)
